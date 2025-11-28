@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TII UAE Common Manifest
+
+  Contains shared infrastructure for TII UAE Jetson projects:
+  - tiiuae remote (github.com/tiiuae/) - TII UAE organization
+  - hlyytine remote (github.com/hlyytine/) - Personal forks
+  - jetson-pkvm workspace (scripts, docs, patches, autopilot)
+-->
+<manifest>
+  <!-- TII UAE organization repositories -->
+  <remote name="tiiuae"
+          fetch="https://github.com/tiiuae/" />
+
+  <!-- Personal GitHub repositories (forks with custom modifications) -->
+  <remote name="hlyytine"
+          fetch="https://github.com/hlyytine/" />
+
+  <!-- Workspace: scripts, docs, patches, autopilot
+       Symlinks bring key files/dirs to workspace root -->
+  <project name="jetson-pkvm"
+           path="jetson-pkvm"
+           remote="hlyytine"
+           revision="claude">
+    <linkfile src="scripts" dest="scripts" />
+    <linkfile src="docs" dest="docs" />
+    <linkfile src="patches" dest="patches" />
+    <linkfile src="autopilot" dest="autopilot" />
+    <linkfile src="README.md" dest="README.md" />
+    <linkfile src="CLAUDE.md" dest="CLAUDE.md" />
+  </project>
+
+</manifest>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NVIDIA Jetson Linux BSP 36.4.4 - Base Manifest
+
+  This manifest contains all NVIDIA stock repositories from nv-tegra.nvidia.com
+  for Jetson Linux (L4T) BSP version 36.4.4.
+
+  Use this directly for stock BSP, or include it in a derived manifest
+  and use extend-project to override specific repositories.
+-->
+<manifest>
+  <!-- NVIDIA Tegra public git server -->
+  <remote name="nv-tegra"
+          fetch="git://nv-tegra.nvidia.com/" />
+
+  <!-- Default to nv-tegra remote and jetson_36.4.4 tag -->
+  <default remote="nv-tegra"
+           revision="refs/tags/jetson_36.4.4"
+           sync-j="4" />
+
+  <!-- ========== Kernel repositories ========== -->
+
+  <!-- Ubuntu kernel source -->
+  <project name="3rdparty/canonical/linux-jammy"
+           path="Linux_for_Tegra/source/kernel/kernel-jammy-src" />
+
+  <!-- NVIDIA GPU driver (out-of-tree) -->
+  <project name="linux-nvgpu"
+           path="Linux_for_Tegra/source/nvgpu" />
+
+  <!-- NVIDIA out-of-tree platform drivers -->
+  <project name="linux-nv-oot"
+           path="Linux_for_Tegra/source/nvidia-oot" />
+
+  <!-- Hardware Performance Monitor -->
+  <project name="linux-hwpm"
+           path="Linux_for_Tegra/source/hwpm" />
+
+  <!-- NVIDIA Ethernet driver (nested under nvidia-oot) -->
+  <project name="kernel/nvethernetrm"
+           path="Linux_for_Tegra/source/nvethernetrm">
+    <linkfile src="." dest="Linux_for_Tegra/source/nvidia-oot/drivers/net/ethernet/nvidia/nvethernet/nvethernetrm" />
+  </project>
+
+  <!-- Kernel device tree sources -->
+  <project name="linux/kernel-devicetree"
+           path="Linux_for_Tegra/source/kernel-devicetree" />
+
+  <!-- T23x device tree sources -->
+  <project name="device/hardware/nvidia/t23x-public-dts"
+           path="Linux_for_Tegra/source/hardware/nvidia/t23x/nv-public" />
+
+  <!-- Tegra common device tree sources -->
+  <project name="device/hardware/nvidia/tegra-public-dts"
+           path="Linux_for_Tegra/source/hardware/nvidia/tegra/nv-public" />
+
+  <!-- NVIDIA display driver (out-of-tree) -->
+  <project name="tegra/kernel-src/nv-kernel-display-driver"
+           path="Linux_for_Tegra/source/nvdisplay" />
+
+  <!-- Device tree compiler -->
+  <project name="3rdparty/dtc-src/1.4.5"
+           path="Linux_for_Tegra/source/dtc-src/1.4.5" />
+
+  <!-- ========== Other repositories ========== -->
+
+  <!-- Argus camera -->
+  <project name="tegra/argus-cam-libav/argus_cam_libavencoder"
+           path="Linux_for_Tegra/source/tegra/argus-cam-libav/argus_cam_libavencoder" />
+
+  <!-- CUDA samples -->
+  <project name="tegra/cuda-src/nvsample_cudaprocess"
+           path="Linux_for_Tegra/source/tegra/cuda-src/nvsample_cudaprocess" />
+
+  <!-- X config utility -->
+  <project name="tegra/gfx-src/nv-xconfig"
+           path="Linux_for_Tegra/source/tegra/gfx-src/nv-xconfig" />
+
+  <!-- GStreamer plugins -->
+  <project name="tegra/gst-src/gst-egl"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-egl" />
+
+  <project name="tegra/gst-src/gst-jpeg"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-jpeg" />
+
+  <project name="tegra/gst-src/gst-nvarguscamera"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvarguscamera" />
+
+  <project name="tegra/gst-src/gst-nvcompositor"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvcompositor" />
+
+  <project name="tegra/gst-src/gst-nvtee"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvtee" />
+
+  <project name="tegra/gst-src/gst-nvv4l2camera"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvv4l2camera" />
+
+  <project name="tegra/gst-src/gst-nvvidconv"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvvidconv" />
+
+  <project name="tegra/gst-src/gst-nvvideo4linux2"
+           path="Linux_for_Tegra/source/tegra/gst-src/gst-nvvideo4linux2" />
+
+  <project name="tegra/gst-src/nvgstapps"
+           path="Linux_for_Tegra/source/tegra/gst-src/nvgstapps" />
+
+  <project name="tegra/gst-src/libgstnvcustomhelper"
+           path="Linux_for_Tegra/source/tegra/gst-src/libgstnvcustomhelper" />
+
+  <project name="tegra/gst-src/libgstnvdrmvideosink"
+           path="Linux_for_Tegra/source/tegra/gst-src/libgstnvdrmvideosink" />
+
+  <project name="tegra/gst-src/libgstnvvideosinks"
+           path="Linux_for_Tegra/source/tegra/gst-src/libgstnvvideosinks" />
+
+  <project name="tegra/gst-src/opencv_gst_samples"
+           path="Linux_for_Tegra/source/tegra/gst-src/opencv_gst_samples" />
+
+  <!-- V4L2 libraries -->
+  <project name="tegra/v4l2-src/libv4l2_nvargus"
+           path="Linux_for_Tegra/source/tegra/v4l2-src/libv4l2_nvargus" />
+
+  <project name="tegra/v4l2-src/v4l2_libs"
+           path="Linux_for_Tegra/source/tegra/v4l2-src/v4l2_libs" />
+
+  <!-- NvSci headers and samples -->
+  <project name="tegra/nv-sci-src/nvsci_headers"
+           path="Linux_for_Tegra/source/tegra/nv-sci-src/nvsci_headers" />
+
+  <project name="tegra/nv-sci-src/nvsci_samples"
+           path="Linux_for_Tegra/source/tegra/nv-sci-src/nvsci_samples" />
+
+  <!-- OpenWFD headers -->
+  <project name="tegra/openwfd-src/openwfd_headers"
+           path="Linux_for_Tegra/source/tegra/openwfd-src/openwfd_headers" />
+
+  <!-- Secure world: OP-TEE and ATF -->
+  <project name="tegra/optee-src/atf"
+           path="Linux_for_Tegra/source/tegra/optee-src/atf" />
+
+  <project name="tegra/optee-src/nv-optee"
+           path="Linux_for_Tegra/source/tegra/optee-src/nv-optee" />
+
+  <!-- SPE FreeRTOS BSP -->
+  <project name="tegra/spe-src/spe-freertos-bsp"
+           path="Linux_for_Tegra/source/tegra/spe-src/spe-freertos-bsp" />
+
+</manifest>

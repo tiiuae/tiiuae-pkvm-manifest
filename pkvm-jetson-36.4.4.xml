@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  pKVM-enabled Jetson Linux BSP 36.4.4
+
+  This manifest combines:
+  - jetson-36.4.4.xml: Vanilla NVIDIA BSP sources
+  - common.xml: TII UAE workspace (scripts, docs, patches, autopilot)
+
+  Plus pKVM-specific modifications:
+  - pKVM kernel with SMMUv2 support for GPU virtualization
+  - Custom driver forks compatible with kernel 6.17
+  - TII UAE ATF with pKVM support
+-->
+<manifest>
+  <!-- Base manifests -->
+  <include name="jetson-36.4.4.xml" />
+  <include name="common.xml" />
+
+  <!-- ============================================================
+       Custom repositories (hlyytine GitHub)
+       ============================================================ -->
+
+  <!-- pKVM kernel with SMMUv2 support for Tegra234 -->
+  <project name="linux"
+           path="Linux_for_Tegra/source/kernel/linux"
+           remote="hlyytine"
+           revision="tegra/pkvm-mainline-6.17-smmu-backup" />
+
+  <!-- Override nvidia-oot with custom fork -->
+  <extend-project name="linux-nv-oot"
+                  remote="hlyytine"
+                  revision="rel-38-for-nvgpu-rel-36" />
+
+  <!-- Override nvgpu with kernel 6.17 compatible fork -->
+  <extend-project name="linux-nvgpu"
+                  remote="hlyytine"
+                  revision="v6.17" />
+
+  <!-- Replace nvdisplay with kernel 6.17 compatible fork
+       (remove-project needed: base name has path prefix) -->
+  <remove-project name="tegra/kernel-src/nv-kernel-display-driver" />
+  <project name="nv-kernel-display-driver"
+           path="Linux_for_Tegra/source/nvdisplay"
+           remote="hlyytine"
+           revision="v6.17" />
+
+  <!-- ============================================================
+       TII UAE organization repositories (tiiuae GitHub)
+       ============================================================ -->
+
+  <!-- Replace ATF with TII UAE pKVM-enabled fork
+       (remove-project needed: base name has path prefix) -->
+  <remove-project name="tegra/optee-src/atf" />
+  <project name="atf-nvidia-jetson"
+           path="Linux_for_Tegra/source/tegra/optee-src/atf"
+           remote="tiiuae"
+           revision="l4t/l4t-r36.4.4-pkvm2" />
+
+  <!-- ============================================================
+       NVIDIA stock repos with updated branches (nv-tegra remote)
+       ============================================================ -->
+
+  <!-- Update to rel-38 branches for newer driver support -->
+  <extend-project name="linux-hwpm"
+                  revision="rel-38" />
+
+  <extend-project name="kernel/nvethernetrm"
+                  revision="rel-38" />
+
+  <extend-project name="device/hardware/nvidia/t23x-public-dts"
+                  revision="rel-38" />
+
+  <extend-project name="device/hardware/nvidia/tegra-public-dts"
+                  revision="rel-38" />
+
+</manifest>
