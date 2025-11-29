@@ -20,11 +20,13 @@
        Custom repositories (hlyytine GitHub)
        ============================================================ -->
 
-  <!-- pKVM kernel with SMMUv2 support for Tegra234 -->
+  <!-- Replace Ubuntu kernel with pKVM kernel (SMMUv2 support for Tegra234) -->
+  <remove-project name="3rdparty/canonical/linux-jammy" />
   <project name="linux"
            path="Linux_for_Tegra/source/kernel/linux"
            remote="hlyytine"
-           revision="tegra/pkvm-mainline-6.17-smmu-backup" />
+           revision="tegra/pkvm-mainline-6.17-smmu-backup"
+           clone-depth="1" />
 
   <!-- Override nvidia-oot with custom fork -->
   <extend-project name="linux-nv-oot"

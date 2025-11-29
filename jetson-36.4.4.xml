@@ -22,7 +22,8 @@
 
   <!-- Ubuntu kernel source -->
   <project name="3rdparty/canonical/linux-jammy"
-           path="Linux_for_Tegra/source/kernel/kernel-jammy-src" />
+           path="Linux_for_Tegra/source/kernel/linux"
+           clone-depth="1" />
 
   <!-- NVIDIA GPU driver (out-of-tree) -->
   <project name="linux-nvgpu"

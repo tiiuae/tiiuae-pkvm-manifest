@@ -27,7 +27,7 @@ pkvm-jetson-36.4.4.xml
     ├── <include name="jetson-36.4.4.xml" />   (vanilla NVIDIA BSP)
     ├── <include name="common.xml" />           (remotes + workspace)
     │
-    ├── <project> linux                         (pKVM kernel)
+    ├── <remove-project> + <project> linux      (pKVM kernel replaces Ubuntu)
     ├── <extend-project> linux-nv-oot           (custom platform drivers)
     ├── <extend-project> linux-nvgpu            (GPU driver for 6.17)
     ├── <remove-project> + <project> nvdisplay  (display driver for 6.17)
@@ -74,8 +74,7 @@ echo ". ${WORKSPACE}/env.sh" >> ~/.bashrc
 ├── Linux_for_Tegra/
 │   └── source/                      # BSP sources
 │       ├── kernel/
-│       │   ├── linux/               # pKVM kernel with SMMUv2 support
-│       │   └── kernel-jammy-src/    # NVIDIA stock Ubuntu kernel
+│       │   └── linux/               # Kernel (pKVM or Ubuntu depending on manifest)
 │       ├── nvgpu/                   # NVIDIA GPU driver
 │       ├── nvidia-oot/              # NVIDIA out-of-tree drivers (custom fork)
 │       ├── nvdisplay/               # Display driver
